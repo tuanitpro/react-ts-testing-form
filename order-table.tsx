@@ -21,6 +21,13 @@ export default function OrderTable({}) {
     setOrderItems([...newOrderItems]);
   };
 
+  const caculateSumTotal = () => {
+    if (orderItems?.length) {
+      return orderItems?.reduce((item, a) => item + a);
+    }
+    return 0;
+  };
+
   return (
     <div>
       {orderItems?.map((orderItem, index) => (
@@ -33,9 +40,10 @@ export default function OrderTable({}) {
           />
         </div>
       ))}
+      Total:
+      <br /> <input type="text" value={caculateSumTotal()} disabled />
       <br />
-      Total: {orderItems.length ? orderItems?.reduce((item, a) => item + a) : 0}
-      <br />
+      <hr />
       <InputAdd onAdded={handleAddNew} />
     </div>
   );

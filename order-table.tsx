@@ -10,21 +10,34 @@ export default function OrderTable({}) {
   const handleAddNew = () => {
     setOrderItems([...orderItems, Number.parseInt(newValue.toString())]);
   };
-  const handleonChangeValue = (value, index) => {
+  const handleOnChangeValue = (value, index) => {
     let newOrderItems = orderItems;
     newOrderItems[index] = newOrderItems[index] + value;
     setOrderItems([...newOrderItems]);
   };
-  
+
+  const handleOnDelete = (index) => {
+    let newOrderItems = orderItems.filter(
+      (item, newIndex) => index !== newIndex
+    );
+
+    setOrderItems([...newOrderItems]);
+  };
+
   return (
     <div>
-      {orderItems.map((orderItem, index) => (
+      {orderItems?.map((orderItem, index) => (
         <div key={index}>
-          <InputText data={orderItem} index={index} onChange={handleonChangeValue} />
+          <InputText
+            data={orderItem}
+            index={index}
+            onChange={handleOnChangeValue}
+            onDelete={handleOnDelete}
+          />
         </div>
       ))}
       <br />
-      Total: {orderItems.reduce((item, a) => item + a)}
+      Total: {orderItems.length ? orderItems?.reduce((item, a) => item + a) : 0}
       <br />
       <input type="number" value={newValue} onChange={handleChangeValue} />
       <button onClick={handleAddNew}>Add new </button>

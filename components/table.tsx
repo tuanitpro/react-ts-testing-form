@@ -9,7 +9,7 @@ export default function Table({ dataSource }) {
   };
   return (
     <div>
-      <table border="1" width="100%">
+      <table border={1} width="100%">
         <thead>
           <tr>
             <th>#</th>

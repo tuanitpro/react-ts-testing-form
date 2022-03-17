@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import InputText from './components/input-text';
 import InputAdd from './components/input-add';
+import Table from './components/table';
 
 export default function OrderTable({}) {
   const [orderItems, setOrderItems] = useState([10, 20]);
@@ -45,6 +46,8 @@ export default function OrderTable({}) {
       <br />
       <hr />
       <InputAdd onAdded={handleAddNew} />
+      <hr />
+      <Table dataSource={orderItems} />
     </div>
   );
 }

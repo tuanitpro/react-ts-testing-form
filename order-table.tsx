@@ -1,13 +1,10 @@
 import React, { useState } from 'react';
 import InputText from './components/input-text';
+import InputAdd from './components/input-add';
 
 export default function OrderTable({}) {
   const [orderItems, setOrderItems] = useState([10, 20]);
-  const [newValue, setNewValue] = useState(0);
-  const handleChangeValue = (ele) => {
-    setNewValue(ele.target.value);
-  };
-  const handleAddNew = () => {
+  const handleAddNew = (newValue) => {
     setOrderItems([...orderItems, Number.parseInt(newValue.toString())]);
   };
   const handleOnChangeValue = (value, index) => {
@@ -39,8 +36,7 @@ export default function OrderTable({}) {
       <br />
       Total: {orderItems.length ? orderItems?.reduce((item, a) => item + a) : 0}
       <br />
-      <input type="number" value={newValue} onChange={handleChangeValue} />
-      <button onClick={handleAddNew}>Add new </button>
+      <InputAdd onAdded={handleAddNew} />
     </div>
   );
 }
